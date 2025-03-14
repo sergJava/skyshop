@@ -52,9 +52,9 @@ public class StorageService {
         Article appleArticle = new Article("apple", UUID.randomUUID(), "green apple");
         Article tomatoJuiceArticle = new Article("tomato juice", UUID.randomUUID(), "tomato with apple juice 50%");
         Article smallBananaArticle = new Article("small ban", UUID.randomUUID(), "by New Zeland");
-        Article appleJuiceArticle = new Article("apple juice", UUID.randomUUID(),"apple juice 100%");
-        Article appleJuiceArticle2 = new Article("apple juice", UUID.randomUUID(),"app juice 100% app");
-        Article appleJuiceArticle3 = new Article("apple juice", UUID.randomUUID(),"app juice 100%");
+        Article appleJuiceArticle = new Article("apple juice", UUID.randomUUID(), "apple juice 100%");
+        Article appleJuiceArticle2 = new Article("apple juice", UUID.randomUUID(), "app juice 100% app");
+        Article appleJuiceArticle3 = new Article("apple juice", UUID.randomUUID(), "app juice 100%");
 
         articleStorage.put(appleArticle.getId(), appleArticle);
         articleStorage.put(tomatoJuiceArticle.getId(), tomatoJuiceArticle);
@@ -72,14 +72,14 @@ public class StorageService {
         return articleStorage.values();
     }
 
-    public Collection<Searchable> getSearchables(){
+    public Collection<Searchable> getSearchables() {
         Collection<Searchable> searchables = Stream.of(productStorage.values(), articleStorage.values())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
         return searchables;
     }
 
-    public Optional<Product> getProductById(UUID id){
+    public Optional<Product> getProductById(UUID id) {
         return Optional.ofNullable(productStorage.get(id));
     }
 
