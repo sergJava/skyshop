@@ -17,9 +17,7 @@ public class SearchService {
         this.storageService = storageService;
     }
 
-
-
-    public Collection<SearchResult> search (String requestString){
+    public Collection<SearchResult> search(String requestString) {
         Collection<SearchResult> results = storageService.getSearchables()
                 .stream()
                 .filter(searchable -> searchable.getSearchTerm().contains(requestString))
