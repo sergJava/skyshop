@@ -1,6 +1,6 @@
 package org.skypro.skyshop.model.exceptions;
 
-public class NoSuchProductException extends RuntimeException{
+public class NoSuchProductException extends RuntimeException {
     public NoSuchProductException() {
         super("такого продукта нет");
     }
