@@ -17,7 +17,6 @@ import java.util.UUID;
 
 @RestController
 public class ShopController {
-    //домашка готова Жизненный цикл компонентов Spring
 
     private final StorageService storageService;
     private final SearchService searchService;
