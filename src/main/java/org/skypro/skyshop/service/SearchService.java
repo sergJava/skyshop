@@ -20,7 +20,7 @@ public class SearchService {
     public Collection<SearchResult> search(String requestString) {
         Collection<SearchResult> results = storageService.getSearchables()
                 .stream()
-                .filter(searchable -> searchable.getSearchTerm().contains(requestString))
+                .filter(searchable -> searchable.getSearchTerm().toLowerCase().contains(requestString.toLowerCase()))
                 .map(SearchResult::fromSearchable)
                 .collect(Collectors.toList());
         return results;
