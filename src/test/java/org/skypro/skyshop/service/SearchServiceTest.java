@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.SearchResult;
@@ -34,9 +35,10 @@ public class SearchServiceTest {
     @Test
     void whenNoObject_thenSearchServiceReturnsEmptyList() {
         UUID existingUuid = UUID.randomUUID();
-        Product product = new SimpleProduct("apple", existingUuid, 10);
-        storageService.putProduct(product);
-        when(searchService.search("request")).thenReturn(Collections.emptyList());
+        Product product = new SimpleProduct("product", UUID.randomUUID(), 10);
+        Article article = new Article("article", UUID.randomUUID(), "test article");
+
+        when(storageService.getSearchables()).thenReturn(List.of(product, article));
         Assertions.assertTrue(searchService.search("request").isEmpty());
     }
 
