@@ -41,6 +41,7 @@ public class BasketServiceTest {
     void addToProductBasket_existentProduct_thenCallsAddToProductBasket() {
         UUID existentUuid = UUID.randomUUID();
         Product existentProduct = new SimpleProduct("test product", existentUuid, 100);
+
         when(storageService.getProductById(existentUuid)).thenReturn(Optional.of(existentProduct));
 
         basketService.addToProductBasket(existentUuid);

@@ -43,17 +43,20 @@ public class SearchServiceTest {
     }
 
     @Test
-    void whenObjectIsExist_thenSearchServiceReturnsObject() {
+    void whenObjectsAreExist_thenSearchServiceReturnsObjects() {
         Product product = new SimpleProduct("apple", UUID.randomUUID(), 10);
-        SearchResult searchResult = SearchResult.fromSearchable(product);
-        Collection<Searchable> searchables = Collections.singletonList(product);
+        Article article = new Article("article apple", UUID.randomUUID(), "test article");
+
+        Collection<Searchable> searchables = List.of(product, article);
+        Collection<SearchResult> testSearchResults = List.of(SearchResult.fromSearchable(product), SearchResult.fromSearchable(article));
 
         when(storageService.getSearchables()).thenReturn(searchables);
 
-        Collection<SearchResult> searchResults = searchService.search("appl");
+        Collection<SearchResult> actualSearchResults = searchService.search("appl");
 
-        Assertions.assertEquals(1, searchResults.size());
-        Assertions.assertTrue(searchResults.contains(searchResult));
+        Assertions.assertEquals(2, actualSearchResults.size());
+        Assertions.assertTrue(actualSearchResults.containsAll(testSearchResults));
+        Assertions.assertTrue(testSearchResults.containsAll(actualSearchResults));
     }
 
 
