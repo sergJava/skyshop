@@ -83,4 +83,8 @@ public class StorageService {
         return Optional.ofNullable(productStorage.get(id));
     }
 
+    public void putProduct(Product product) {
+        productStorage.put(product.getId(), product);
+    }
+
 }
